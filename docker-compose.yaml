@@ -1,0 +1,22 @@
+version: "3.7"
+services:
+    db:
+        image: mysql:5.7
+        container_name: currency-rate
+        restart: unless-stopped
+        environment:
+            MYSQL_DATABASE: currency-rate
+            MYSQL_ROOT_PASSWORD: currency-rate
+            MYSQL_PASSWORD: currency-rate
+            MYSQL_USER: currencyrate
+            SERVICE_TAGS: dev
+            SERVICE_NAME: mysql
+        volumes:
+            - ./server/mysql:/docker-entrypoint-initdb.d
+            - ./server/mysql_data:/var/lib/mysql
+
+
+# networks:
+#     currencyrate:
+#         driver: bridge
+
